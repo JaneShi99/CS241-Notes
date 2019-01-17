@@ -123,4 +123,32 @@ f:
 ### Now, how do we print?
 
 - you have a special address!
-  - 
+- it's done byte by byte
+  - output: use sw to store words in location 0xffff000c
+    - least significant byt will be printed
+  - input: use lw to store words in location 0xffff004
+    - least significant yte will be the next char from stdin
+
+Example: print CS241 to screen!
+
+```assembly
+lis $1
+.word 0xffff000c
+lis $2
+.word 67
+sw $2, 0($1)
+lis $2
+.word 83
+sw $2, 0($1)
+lis $2
+.word 50
+sw $2, 0($1)
+lis $2
+.word 52
+sw $2, 0($1)
+lis $2
+.word 49
+sw $2, 0($1)
+
+```
+
