@@ -33,6 +33,14 @@ add $1, $1, $11
 mult $3, $1
 mflo $3
 
+clean: lis $31
+.word 12
+add $30, $30, $31
+lw $11, -12($30)
+lw $1, -8($30)
+lw $31, -4($30)
+jr $31
+
 
 //
 A good general template for recursion
@@ -60,7 +68,16 @@ jalr to the function
 now restore the value returned by function
 
 CLEAN:
-basically add back stack ptr by 4*n
+lis $31
+.word 4*n
+
+add $30, $30, $31
+lw $....
+....
+lw.....
+jr $31
+
+clean basically add back stack ptr by 4*n
 sw back the n-tuple stack including $31
 then jr $31
 
